@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 20:52:48 by alepinto          #+#    #+#             */
-/*   Updated: 2023/10/09 17:41:15 by alepinto         ###   ########.fr       */
+/*   Created: 2023/07/08 20:53:06 by alepinto          #+#    #+#             */
+/*   Updated: 2023/07/11 10:52:11 by alepinto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_free_matrix(char **matrix)
 {
-	if (BONUS == 0 && argc == 5)
-		pipex(argv, env);
-	else if (BONUS == 1 && argc >= 5)
-		pipex_bonus(argc, argv, env);
-	else
-		ft_putendl_fd("INVALID ARGUMENTS", 2);
-	return (0);
+	int	row;
+
+	row = -1;
+	while (matrix[++row])
+		free(matrix[row]);
+	free(matrix);
 }

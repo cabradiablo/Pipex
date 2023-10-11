@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 20:52:48 by alepinto          #+#    #+#             */
-/*   Updated: 2023/10/09 17:41:15 by alepinto         ###   ########.fr       */
+/*   Created: 2023/07/08 20:53:01 by alepinto          #+#    #+#             */
+/*   Updated: 2023/10/10 12:27:59 by alepinto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_error(char *s)
 {
-	if (BONUS == 0 && argc == 5)
-		pipex(argv, env);
-	else if (BONUS == 1 && argc >= 5)
-		pipex_bonus(argc, argv, env);
-	else
-		ft_putendl_fd("INVALID ARGUMENTS", 2);
-	return (0);
+	perror(s);
+	exit(errno);
+}
+
+void	ft_error2(char *s)
+{
+    dprintf(2, "pid: %d\n", getpid());
+    dprintf(2, "parent pid: %d\n", getppid());
+	ft_putstr_fd(s, 2);
+	ft_putstr_fd(": command Not Found\n", 2);
+	exit(127);
+}
+
+void	ft_free_error(char **s, char *r)
+{
+	ft_free_matrix(s);
+	ft_error(r);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 20:50:21 by alepinto          #+#    #+#             */
-/*   Updated: 2023/04/30 03:19:37 by alepinto         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:32:48 by alepinto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*read_all(int fd, char *temp)
 {
-	int	i;
+	int		i;
 	char	*buff;
 
 	buff = (char *)malloc(BUFFER_SIZE + 1);

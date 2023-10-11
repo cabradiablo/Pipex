@@ -6,7 +6,7 @@
 /*   By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 03:58:51 by alepinto          #+#    #+#             */
-/*   Updated: 2023/05/03 06:05:43 by alepinto         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:33:15 by alepinto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,3 @@ char	**ft_split(char const *s, char c)
 	matrix[ft_segcount(s, c)] = NULL;
 	return (matrix);
 }
-

@@ -6,7 +6,7 @@
 /*   By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 02:35:36 by alepinto          #+#    #+#             */
-/*   Updated: 2023/04/30 03:16:00 by alepinto         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:32:28 by alepinto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
-int	ft_security(char **matrix, int row);
+void	ft_free_matrix(char **matrix);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 void	ft_putchar_fd(char c, int fd);
@@ -80,8 +80,8 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-int	ft_strlen_gnl(char *s);
-int	ft_strchr_gnl(char *s1, char c);
+int		ft_strlen_gnl(char *s);
+int		ft_strchr_gnl(char *s1, char c);
 char	strjoin_gnl(char *s1, char c);
 # endif
 #endif

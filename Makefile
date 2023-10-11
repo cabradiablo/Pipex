@@ -1,4 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/08 20:52:44 by alepinto          #+#    #+#              #
+#    Updated: 2023/07/11 10:31:18 by alepinto         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 SRC = 	main.c 		\
+		ft_pipex.c	\
+		ft_parser.c	\
+		ft_child.c	\
+		ft_utils.c	\
+		ft_error.c	\
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -30,16 +47,18 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(LDFLAGS)  -o $(NAME)
 
 clean:
-	@rm  -f $(OBJ) || true
+	@$(RM) $(OBJ) || true
 	make fclean -sC ./Libft || true
 
 fclean: clean
-	rm -rf $(NAME)
+	$(RM) $(NAME)
 
-bonus: all
-	-D BONUS=1
+bonus:: CFLAGS += -D BONUS=1
+bonus: re
 
 re: fclean all
+
+rebonus: fclean bonus
 
 .PHONY: all clean fclean re
 
