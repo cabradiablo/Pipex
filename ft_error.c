@@ -6,7 +6,7 @@
 /*   By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 20:53:01 by alepinto          #+#    #+#             */
-/*   Updated: 2023/10/10 12:27:59 by alepinto         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:22:21 by alepinto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	ft_error(char *s)
 
 void	ft_error2(char *s)
 {
-    dprintf(2, "pid: %d\n", getpid());
-    dprintf(2, "parent pid: %d\n", getppid());
 	ft_putstr_fd(s, 2);
 	ft_putstr_fd(": command Not Found\n", 2);
 	exit(127);

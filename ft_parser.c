@@ -6,7 +6,7 @@
 /*   By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 20:52:57 by alepinto          #+#    #+#             */
-/*   Updated: 2023/07/11 10:40:34 by alepinto         ###   ########.fr       */
+/*   Updated: 2023/10/12 01:03:49 by alepinto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ char	*path_getter(char *cmd, char **env)
 	{
 		path = ft_strjoin(env_path[i], "/");
 		cmd_path = ft_strjoin(path, cmd);
-		free(path);
+        if (path)
+		    free(path);
 		if (access(cmd_path, X_OK) == 0)
 		{
 			ft_free_matrix(env_path);
