@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 20:52:57 by alepinto          #+#    #+#             */
-/*   Updated: 2023/10/12 01:03:49 by alepinto         ###   ########.fr       */
+/*   Created: 2023/07/08 20:52:50 by alepinto          #+#    #+#             */
+/*   Updated: 2023/11/05 05:42:29 by alepinto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,50 @@ char	*path_getter(char *cmd, char **env)
 		free(cmd_path);
 		i++;
 	}
-	ft_free_matrix(env_path);
-	return (EXIT_SUCCESS);
+	return (ft_free_matrix(env_path), NULL);
+}
+
+int	relative_path(char **cmd, char **path)
+{
+	int	check;
+    
+    if (*cmd == NULL)
+        return (0);
+	check = 0;
+    if (ft_strncmp(*cmd, "./", 2) == 0 || ft_strncmp(*cmd, "/", 1) == 0 ||  ft_strncmp(*cmd, "../", 2) == 0)
+		check = 1;
+	if (check == 1)
+	{
+        if (access(cmd[0], F_OK) == 0)
+            *path = cmd[0];
+        else
+        {
+            perror(cmd[0]);
+            ft_free_matrix(cmd);
+            exit(errno);
+        }
+    }
+    return (check);
+}
+
+void	ft_execve(char *av, char **env)
+{
+	char	**cmd;
+	char	*path;
+    int     i;
+
+    i = 0;
+    path = NULL;
+	if (!*av)
+		ft_error(av);
+	cmd = ft_split(av, ' ');
+	if (!cmd)
+		ft_free_error(cmd, "malloc");
+	if (relative_path(cmd, &path) == 0)
+    {
+        if (cmd[0])
+		    path = path_getter(cmd[0], env);
+    }
+	if (path && execve(path, cmd, env) == -1)
+		ft_free_error(cmd, "exceve");
 }

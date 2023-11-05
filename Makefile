@@ -6,49 +6,42 @@
 #    By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/08 20:52:44 by alepinto          #+#    #+#              #
-#    Updated: 2023/07/11 10:31:18 by alepinto         ###   ########.fr        #
+#    Updated: 2023/10/29 15:50:35 by alepinto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = 	main.c 		\
-		ft_pipex.c	\
-		ft_parser.c	\
-		ft_child.c	\
-		ft_utils.c	\
-		ft_error.c	\
+SRC = 	main.c 					\
+		pipex.c					\
+		fd.c					\
+		child.c					\
+		execve.c				\
+		error.c					\
+		utils_lib.c				\
+		get_next_line.c			\
+		get_next_line_utils.c	\
 
 OBJ = $(SRC:%.c=%.o)
 
 ####COMPILER
 CC = gcc -g3
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -I ./ -Wall -Wextra -Werror 
 
-CFLAGS += -fsanitize=address -g3
+CFLAGS +=  -fsanitize=address
 
 ####NAME
 NAME = pipex
 
-####LIBS
-INC_DIR = Libft
-INC = -I $(INC_DIR)
 
-####LINKER
-
-LDFLAGS = -LLibft -lft
-
-LDFLAGS += -g3 -fsanitize=address
 
 ####RULES
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make -sC $(INC_DIR)
-	$(CC) $(OBJ) $(LDFLAGS)  -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	@$(RM) $(OBJ) || true
-	make fclean -sC ./Libft || true
 
 fclean: clean
 	$(RM) $(NAME)

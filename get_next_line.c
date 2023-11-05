@@ -5,12 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alepinto <alepinto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 20:50:21 by alepinto          #+#    #+#             */
-/*   Updated: 2023/07/11 10:32:48 by alepinto         ###   ########.fr       */
+/*   Created: 2023/10/29 02:23:50 by alepinto          #+#    #+#             */
+/*   Updated: 2023/10/29 02:56:48 by alepinto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 42
+# endif
 
 static char	*read_all(int fd, char *temp)
 {
@@ -21,7 +29,7 @@ static char	*read_all(int fd, char *temp)
 	if (!buff)
 		return (0);
 	i = 1;
-	while (!(ft_strchr_gnl(temp, '\n')) && i != 0)
+	while (!(ft_strchr(temp, '\n')) && i != 0)
 	{
 		i = read(fd, buff, BUFFER_SIZE);
 		if (i == -1)
@@ -31,7 +39,7 @@ static char	*read_all(int fd, char *temp)
 			return (0);
 		}
 		buff[i] = '\0';
-		temp = ft_strjoin_gnl(temp, buff);
+		temp = ft_strjoin(temp, buff);
 	}
 	free(buff);
 	return (temp);
